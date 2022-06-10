@@ -21,16 +21,21 @@ export default {
     };
   },
   async created() {
-    // TODO: change to only future shows
-    const { data, error } = await supabase.from('shows').select('*');
+    const data = await this.getShowsFromSupabase();
+    if (data) this.shows = data;
+  },
+  methods: {
+    async getShowsFromSupabase() {
+      // TODO: change to only future shows
+      const { data, error } = await supabase.from('shows').select('*');
 
-    if (error) {
-      // TODO: spawn toast notification or something
-      console.log(error);
-      return;
-    }
+      if (error) {
+        // TODO: spawn toast notification or something
+        console.log(error);
+      }
 
-    this.shows = data;
+      return data;
+    },
   },
 };
 </script>
