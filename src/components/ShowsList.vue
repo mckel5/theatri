@@ -1,36 +1,20 @@
 <template>
-  <div class="shows">
+  <div>
     <div v-for="show of shows" :key="show.id">
-      <table>
-        <tr>
-          <td>Title:</td>
-          <td>{{ show.title }}</td>
-        </tr>
-        <tr>
-          <td>Date/Time:</td>
-          <td>{{ new Date(show.date).toLocaleString() }}</td>
-        </tr>
-        <tr>
-          <td>Ticket Price:</td>
-          <td>
-            {{
-              new Intl.NumberFormat('en-us', { style: 'currency', currency: 'USD' }).format(
-                show.ticket_price_in_cents
-              )
-            }}
-          </td>
-        </tr>
-      </table>
-      <hr />
+      <ShowItem :show="show" />
     </div>
   </div>
 </template>
 
 <script>
-import supabase from '../supabase';
+import supabase from '../js/supabase';
+import ShowItem from './ShowItem.vue';
 
 export default {
   name: 'ShowsList',
+  components: {
+    ShowItem,
+  },
   data() {
     return {
       shows: [],
@@ -51,16 +35,4 @@ export default {
 };
 </script>
 
-<style scoped>
-* {
-  text-align: left;
-}
-
-table {
-  margin: auto 10%;
-}
-
-td {
-  padding: 0.5em;
-}
-</style>
+<style scoped lang="scss"></style>
