@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # VS Code workspaces
 *.code-workspace
+
+# Prettier config
+.prettierrc
