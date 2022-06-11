@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@use '../scss/colors';
+@use '@/scss/colors';
 
 .show-item {
   margin: 1em 0;

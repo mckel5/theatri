@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import supabase from '../js/supabase';
-import ShowItem from './ShowItem.vue';
+import supabase from '@/js/supabase';
+import ShowItem from '@/components/ShowItem.vue';
 
 export default {
   name: 'ShowsList',
