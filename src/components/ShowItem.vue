@@ -1,33 +1,38 @@
 <template>
-  <b-row class="show-item">
-    <b-col class="col-3 d-flex mx-auto">
-      <b-container id="date">
-        <b-row>
-          <b-col id="month">{{
-            new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(show.date))
-          }}</b-col>
-        </b-row>
-        <b-row id="day-of-month">
-          <b-col>{{ new Date(show.date).getDate() }}</b-col>
-        </b-row>
-      </b-container>
-    </b-col>
-    <b-col>
-      <b-container id="info-text" style="border-left: 2px solid white">
-        <b-row>
-          <b-col style="font-weight: bold">{{ show.title }}</b-col>
-        </b-row>
-        <b-row>
-          <b-col>{{ show.performed_by }}</b-col>
-        </b-row>
-        <b-row>
-          <b-col>{{
-            new Date(show.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
-          }}</b-col>
-        </b-row>
-      </b-container>
-    </b-col>
-  </b-row>
+  <b-container>
+    <b-row class="show-item">
+      <b-col class="col-3 d-flex mx-auto">
+        <b-container id="date">
+          <b-row>
+            <b-col id="month">{{
+              new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(show.date))
+            }}</b-col>
+          </b-row>
+          <b-row id="day-of-month">
+            <b-col>{{ new Date(show.date).getDate() }}</b-col>
+          </b-row>
+        </b-container>
+      </b-col>
+      <b-col>
+        <b-container id="info-text" style="border-left: 2px solid white">
+          <b-row>
+            <b-col style="font-weight: bold">{{ show.title }}</b-col>
+          </b-row>
+          <b-row>
+            <b-col>{{ show.performed_by }}</b-col>
+          </b-row>
+          <b-row>
+            <b-col>{{
+              new Date(show.date).toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+              })
+            }}</b-col>
+          </b-row>
+        </b-container>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
