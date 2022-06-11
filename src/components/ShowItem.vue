@@ -21,7 +21,9 @@
           <b-col>{{ show.performed_by }}</b-col>
         </b-row>
         <b-row>
-          <b-col>{{ show.date }}</b-col>
+          <b-col>{{
+            new Date(show.date).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+          }}</b-col>
         </b-row>
       </b-container>
     </b-col>
