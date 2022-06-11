@@ -3,7 +3,7 @@
     <b-col class="col-3 d-flex mx-auto">
       <b-container id="date">
         <b-row>
-          <b-col style="text-transform: uppercase; font-weight: bold">{{
+          <b-col id="month">{{
             new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(show.date))
           }}</b-col>
         </b-row>
@@ -13,7 +13,7 @@
       </b-container>
     </b-col>
     <b-col>
-      <b-container id="info-text">
+      <b-container id="info-text" style="border-left: 2px solid white">
         <b-row>
           <b-col style="font-weight: bold">{{ show.title }}</b-col>
         </b-row>
@@ -55,10 +55,21 @@ export default {
   text-align: center;
   padding: 0;
   font-size: 15pt;
+  padding-right: -1em;
+
+  #month {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
   #day-of-month {
     color: colors.$accent-primary;
     font-size: 30pt;
     margin: -0.25em;
   }
+}
+
+#info-text {
+  padding-left: 2em;
 }
 </style>
