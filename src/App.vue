@@ -4,31 +4,20 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </nav> -->
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
- @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@use 'scss/colors';
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-#app {
+#app, html {
+  // adding 'html' to this rule removes white spaces at top and bottom of page
   font-family: 'Lato', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  color: colors.$text-primary;
+  background: colors.$bg-primary;
 }
 </style>
