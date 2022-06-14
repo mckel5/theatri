@@ -24,12 +24,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@use '@/scss/colors';
+
 nav {
-  background-color: black;
+  background-color: colors.$bg-secondary;
   height: 4.5rem !important;
 
   .nav-link {
-    color: white !important;
+    color: colors.$text-primary !important;
     font-size: 10pt;
     text-align: center;
 
