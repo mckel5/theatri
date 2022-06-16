@@ -4,13 +4,11 @@
       <b-navbar-nav>
         <b-nav-item class="mx-5">
           <font-awesome-icon icon="fa-solid fa-masks-theater" />
-          <br />
-          All Shows
+          <span class="icon-label">All Shows</span>
         </b-nav-item>
         <b-nav-item class="mx-5">
           <font-awesome-icon icon="fa-solid fa-heart" />
-          <br />
-          Saved
+          <span class="icon-label">Saved</span>
         </b-nav-item>
       </b-navbar-nav>
     </b-navbar>
@@ -33,10 +31,14 @@ nav {
   .nav-link {
     color: colors.$text-primary !important;
     font-size: 10pt;
-    text-align: center;
 
     .svg-inline--fa {
       height: 1.5rem;
+      // display labels under icons
+      display: block;
+      // center icons relative to labels
+      margin: auto;
+      margin-bottom: 0.25em;
     }
   }
 }
