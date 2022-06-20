@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="shows-list">
     <b-container>
       <ShowsList />
     </b-container>
@@ -12,7 +12,7 @@ import ShowsList from '@/components/ShowsList.vue';
 import BottomNavbar from '@/components/BottomNavbar.vue';
 
 export default {
-  name: 'HomeView',
+  name: 'ShowsListView',
   components: {
     ShowsList,
     BottomNavbar,
