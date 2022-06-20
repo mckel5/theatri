@@ -1,7 +1,7 @@
 <template>
   <div class="show-details">
     <b-container>
-      <ShowDetails />
+      <ShowDetails :id="$route.params.id" />
     </b-container>
     <BottomNavbar />
   </div>
@@ -19,5 +19,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
