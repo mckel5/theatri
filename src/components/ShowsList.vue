@@ -30,8 +30,8 @@ export default {
   },
   methods: {
     async getShowsFromSupabase() {
-      // TODO: change to only future shows
-      const { data, error } = await supabase.from('shows').select('*');
+      const currentDate = new Date().toISOString();
+      const { data, error } = await supabase.from('shows').select('*').gte('date', currentDate);
 
       if (error) {
         // TODO: spawn toast notification or something
