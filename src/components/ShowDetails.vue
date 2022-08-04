@@ -1,9 +1,9 @@
 <template>
   <b-container class="pt-3">
-    <b-row class="mb-2">
-      <h1 style="font-weight: bold;">{{ show['title'] }}</h1>
+    <b-row class="mb-2" id='title'>
+      <h1 style="font-weight: bold">{{ show['title'] }}</h1>
     </b-row>
-    <b-row cols="1" cols-lg="2">
+    <b-row cols="1" cols-lg="2" id='icons'>
       <b-col>
         <b-row>
           <b-col cols="1">
@@ -113,4 +113,29 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@use '@/scss/colors';
+
+#icons > .col {
+  border: 0;
+  border-bottom: 3px;
+  border-style: solid;
+
+  // TODO: remove border from last col
+  .col:last-of-type {
+    border: 0 !important;
+  }
+}
+
+// #icons > .col {
+//   border: 0;
+//   border-bottom: 3px;
+//   border-style: solid;
+// }
+
+// FontAwesome icons
+svg {
+  // color: colors.$accent-primary;
+  font-size: 16pt;
+}
+</style>
