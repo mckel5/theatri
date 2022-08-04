@@ -3,12 +3,17 @@
     <b-navbar fixed="bottom" class="justify-content-center">
       <b-navbar-nav>
         <b-nav-item class="mx-5">
-          <font-awesome-icon icon="fa-solid fa-masks-theater" />
-          <span class="icon-label">All Shows</span>
+          <router-link to="/">
+            <font-awesome-icon icon="fa-solid fa-masks-theater" />
+            <span class="icon-label">All Shows</span>
+          </router-link>
         </b-nav-item>
+
         <b-nav-item class="mx-5">
-          <font-awesome-icon icon="fa-solid fa-heart" />
-          <span class="icon-label">Saved</span>
+          <router-link to="/saved">
+            <font-awesome-icon icon="fa-solid fa-heart" />
+            <span class="icon-label">Saved</span>
+          </router-link>
         </b-nav-item>
       </b-navbar-nav>
     </b-navbar>
@@ -27,6 +32,11 @@ export default {
 nav {
   background-color: colors.$bg-secondary;
   height: 4.5rem !important;
+
+  a {
+    text-decoration: none;
+    color: colors.$text-primary;
+  }
 
   .nav-link {
     color: colors.$text-primary !important;

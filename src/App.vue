@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <!-- <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav> -->
     <router-view />
   </div>
 </template>
@@ -12,7 +8,8 @@
 @use 'scss/colors';
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-#app, html {
+#app,
+html {
   // adding 'html' to this rule removes white spaces at top and bottom of page
   font-family: 'Lato', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
