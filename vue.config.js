@@ -7,5 +7,6 @@ module.exports = defineConfig({
     hot: false,
     liveReload: false,
   },
-  publicPath: '/theatri/',
+  // publicPath: process.env.NODE_ENV === 'production' ? '/theatri/' : '/',
+  publicPath: '/',
 });
