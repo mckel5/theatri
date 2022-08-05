@@ -7,4 +7,5 @@ module.exports = defineConfig({
     hot: false,
     liveReload: false,
   },
+  publicPath: '/theatri/',
 });
