@@ -13,6 +13,7 @@ import {
   faClock,
   faTicket,
   faLocationDot,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 // import { faSchoolFlag } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -29,7 +30,16 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 Vue.use(BootstrapVue);
 
 // FontAwesome
-library.add(faMasksTheater, faHeart, faSchoolFlag, faCalendar, faClock, faTicket, faLocationDot);
+library.add(
+  faMasksTheater,
+  faHeart,
+  faSchoolFlag,
+  faCalendar,
+  faClock,
+  faTicket,
+  faLocationDot,
+  faArrowLeft,
+);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 // Vue

@@ -1,9 +1,15 @@
 <template>
   <b-container class="pt-3">
-    <b-row class="mb-2" id='title'>
-      <h1 style="font-weight: bold">{{ show['title'] }}</h1>
+    <b-row class="mb-2" id="title">
+      <!-- Back button goes here -->
+      <b-col cols="1" class="align-self-center">
+        <font-awesome-icon icon="fa-solid fa-arrow-left" style="height: 2rem" />
+      </b-col>
+      <b-col cols="11">
+        <h1 style="font-weight: bold">{{ show['title'] }}</h1>
+      </b-col>
     </b-row>
-    <b-row cols="1" cols-lg="2" id='icons'>
+    <b-row cols="1" cols-lg="2" id="details">
       <b-col>
         <b-row>
           <b-col cols="1">
@@ -16,7 +22,7 @@
       </b-col>
       <b-col>
         <b-row>
-          <b-col cols="1">
+          <b-col cols="1" class='text-center'>
             <font-awesome-icon icon="fa-solid fa-calendar" />
           </b-col>
           <b-col cols="11">
@@ -57,7 +63,7 @@
         </b-row>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mt-3">
       <b-col>
         <div class="embed-responsive embed-responsive-1by1">
           <!-- width/height must be specified as Bootstrap doesn't resize the embed correctly -->
@@ -116,10 +122,15 @@ export default {
 <style lang="scss" scoped>
 @use '@/scss/colors';
 
-#icons > .col {
+ p, h1 {
+    padding-left: 1rem;
+  }
+
+#details > .col {
   border: 0;
-  border-bottom: 3px;
+  border-bottom: 2px;
   border-style: solid;
+  padding-top: 1rem;
 
   // TODO: remove border from last col
   .col:last-of-type {
