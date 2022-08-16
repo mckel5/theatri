@@ -1,6 +1,6 @@
 <template>
   <div class="show-details">
-    <ShowDetails :id="$route.params.id" />
+    <ShowDetails :id="parseInt($route.params.id)" />
     <BottomNavbar />
   </div>
 </template>

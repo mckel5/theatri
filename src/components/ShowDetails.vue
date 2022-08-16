@@ -15,58 +15,18 @@
     </b-container>
     <b-container class="pt-3">
       <b-row cols="1" cols-lg="2" id="details">
-        <b-col>
-          <b-row>
-            <b-col cols="1">
-              <font-awesome-icon icon="fa-solid fa-school-flag" />
-            </b-col>
-            <b-col cols="11">
-              <p>{{ show['performed_by'] }}</p>
-            </b-col>
-          </b-row>
-        </b-col>
-        <b-col>
-          <b-row>
-            <b-col cols="1" class="text-center">
-              <font-awesome-icon icon="fa-solid fa-calendar" />
-            </b-col>
-            <b-col cols="11">
-              <p>{{ new Date(show['date']).toLocaleDateString('en-US', { dateStyle: 'full' }) }}</p>
-            </b-col>
-          </b-row>
-        </b-col>
-        <b-col>
-          <b-row>
-            <b-col cols="1">
-              <font-awesome-icon icon="fa-solid fa-clock" />
-            </b-col>
-            <b-col cols="11">
-              <p>
-                {{ new Date(show['date']).toLocaleTimeString('en-US', { timeStyle: 'short' }) }}
-              </p>
-            </b-col>
-          </b-row>
-        </b-col>
-        <b-col>
-          <b-row>
-            <b-col cols="1">
-              <font-awesome-icon icon="fa-solid fa-ticket" />
-            </b-col>
-            <b-col cols="11">
-              <p v-html="show['ticket_price']" style="white-space: pre-line"></p>
-            </b-col>
-          </b-row>
-        </b-col>
-        <b-col>
-          <b-row>
-            <b-col cols="1">
-              <font-awesome-icon icon="fa-solid fa-location-dot" />
-            </b-col>
-            <b-col cols="11">
-              <p v-html="show['address']" style="white-space: pre-line"></p>
-            </b-col>
-          </b-row>
-        </b-col>
+        <div v-for="[icon, text] of details.entries()" :key="icon">
+          <b-col>
+            <b-row>
+              <b-col cols="1">
+                <font-awesome-icon :icon="`fa-solid fa-${icon}`" />
+              </b-col>
+              <b-col cols="11">
+                <p v-html="`${text}`" style="white-space: pre-line"></p>
+              </b-col>
+            </b-row>
+          </b-col>
+        </div>
       </b-row>
       <b-row class="mt-3">
         <b-col>
@@ -102,14 +62,23 @@ export default {
   },
   data() {
     return {
-      show: Object,
       api_key: process.env.VUE_APP_MAPS_EMBED_KEY,
-      details: Array[Array],
+      show: Object,
+      details: new Map(),
     };
   },
   async created() {
     const data = await this.getShowFromSupabaseById(this.id);
-    if (data) [this.show] = data;
+    if (data) {
+      [this.show] = data;
+      this.details = new Map([
+        ['school-flag', this.show.performed_by],
+        ['calendar', new Date(this.show.date).toLocaleDateString('en-US', { dateStyle: 'full' })],
+        ['clock', new Date(this.show.date).toLocaleTimeString('en-US', { timeStyle: 'short' })],
+        ['ticket', this.show.ticket_price],
+        ['location-dot', this.show.address],
+      ]);
+    }
   },
   methods: {
     async getShowFromSupabaseById(id) {
