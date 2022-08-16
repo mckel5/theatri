@@ -1,8 +1,6 @@
 <template>
   <div class="show-details">
-    <b-container>
-      <ShowDetails :id="$route.params.id" />
-    </b-container>
+    <ShowDetails :id="$route.params.id" />
     <BottomNavbar />
   </div>
 </template>
