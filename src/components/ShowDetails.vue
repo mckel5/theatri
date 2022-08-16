@@ -1,9 +1,11 @@
 <template>
   <b-container class="pt-3">
     <b-row class="mb-2" id="title">
-      <!-- Back button goes here -->
       <b-col cols="1" class="align-self-center">
-        <font-awesome-icon icon="fa-solid fa-arrow-left" style="height: 2rem" />
+        <a @click="$router.back()" @keydown.enter="$router.back()" href="#">
+          <font-awesome-icon icon="fa-solid fa-arrow-left" style="height: 2rem" />
+          <span class="visually-hidden">Back</span>
+        </a>
       </b-col>
       <b-col cols="11">
         <h1 style="font-weight: bold">{{ show['title'] }}</h1>
@@ -22,7 +24,7 @@
       </b-col>
       <b-col>
         <b-row>
-          <b-col cols="1" class='text-center'>
+          <b-col cols="1" class="text-center">
             <font-awesome-icon icon="fa-solid fa-calendar" />
           </b-col>
           <b-col cols="11">
@@ -98,6 +100,7 @@ export default {
     return {
       show: Object,
       api_key: process.env.VUE_APP_MAPS_EMBED_KEY,
+      details: Array[Array],
     };
   },
   async created() {
@@ -122,9 +125,16 @@ export default {
 <style lang="scss" scoped>
 @use '@/scss/colors';
 
- p, h1 {
-    padding-left: 1rem;
+p,
+h1 {
+  padding-left: 1rem;
+}
+
+#title {
+  a {
+    color: colors.$text-primary;
   }
+}
 
 #details > .col {
   border: 0;
