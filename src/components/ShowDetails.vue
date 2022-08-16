@@ -134,16 +134,15 @@ h1 {
   padding-left: 1rem;
 }
 
+// FontAwesome icons
+svg {
+  font-size: 16pt;
+}
+
 #title {
   background-color: black;
   a {
     color: colors.$text-primary;
   }
-}
-
-// FontAwesome icons
-svg {
-  // color: colors.$accent-primary;
-  font-size: 16pt;
 }
 </style>
