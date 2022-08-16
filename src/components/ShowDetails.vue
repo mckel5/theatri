@@ -141,24 +141,6 @@ h1 {
   }
 }
 
-#details > .col > .row {
-  border: 0;
-  border-bottom: 2px;
-  border-style: solid;
-  padding-top: 1rem;
-
-  // TODO: remove border from last col
-  .col:last-of-type {
-    border: 0 !important;
-  }
-}
-
-// #icons > .col {
-//   border: 0;
-//   border-bottom: 3px;
-//   border-style: solid;
-// }
-
 // FontAwesome icons
 svg {
   // color: colors.$accent-primary;
