@@ -19,6 +19,9 @@ import {
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+// VueLocalStorage
+import VueLocalStorage from 'vue-localstorage';
+
 // Vue
 import App from './App.vue';
 import './registerServiceWorker';
@@ -29,6 +32,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 Vue.use(BootstrapVue);
+Vue.use(VueLocalStorage);
 
 // FontAwesome
 library.add(
@@ -50,4 +54,10 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   render: (h) => h(App),
+  localStorage: {
+    savedShows: {
+      type: Array,
+      default: [],
+    },
+  },
 }).$mount('#app');

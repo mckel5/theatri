@@ -27,11 +27,16 @@ export default {
   async created() {
     const data = await this.getShowsFromSupabase();
     if (data) this.shows = data;
+    // if (!localStorage.savedShows) localStorage.savedShows = new Set();
   },
   methods: {
     async getShowsFromSupabase() {
       const currentDate = new Date().toISOString();
-      const { data, error } = await supabase.from('shows').select('*').gte('date', currentDate).order('date');
+      const { data, error } = await supabase
+        .from('shows')
+        .select('*')
+        .gte('date', currentDate)
+        .order('date');
 
       if (error) {
         // TODO: spawn toast notification or something

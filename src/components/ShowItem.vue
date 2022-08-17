@@ -39,7 +39,10 @@
           class="col-2 d-flex mx-auto align-items-center justify-content-center"
           id="save-button"
         >
-          <font-awesome-icon icon="fa-regular fa-heart" />
+          <font-awesome-icon
+            :icon="`fa-${this.saved(show.id) ? 'solid' : 'regular'} fa-heart`"
+            @click.stop.prevent="toggleSavedShow(show.id)"
+          />
         </b-col>
       </b-row>
     </b-container>
@@ -47,10 +50,33 @@
 </template>
 
 <script>
+// import VueLocalStorage from 'vue-localstorage';
+
 export default {
   name: 'ShowItem',
   props: {
     show: Object,
+  },
+  methods: {
+    toggleSavedShow(id) {
+      const savedShows = this.$localStorage.get('savedShows');
+
+      if (savedShows.includes(id)) {
+        const index = savedShows.indexOf(id);
+        savedShows.splice(index, 1);
+      } else {
+        savedShows.push(id);
+      }
+
+      this.$localStorage.set('savedShows', savedShows);
+      // This re-renders the card, thereby updating the save icon. There may be a better way to do
+      // this, though I'm not sure what it would be.
+      this.$forceUpdate();
+    },
+    saved(id) {
+      const savedShows = this.$localStorage.get('savedShows');
+      return savedShows.includes(id);
+    },
   },
 };
 </script>
