@@ -35,6 +35,12 @@
             </b-row>
           </b-container>
         </b-col>
+        <b-col
+          class="col-2 d-flex mx-auto align-items-center justify-content-center"
+          id="save-button"
+        >
+          <font-awesome-icon icon="fa-regular fa-heart" />
+        </b-col>
       </b-row>
     </b-container>
   </router-link>
@@ -51,10 +57,6 @@ export default {
 
 <style scoped lang="scss">
 @use '@/scss/colors';
-
-// a {
-//   all: unset;
-// }
 
 .show-item {
   margin: 1em 0;
@@ -87,5 +89,11 @@ export default {
 
 #info-text {
   padding-left: 2em;
+}
+
+#save-button {
+  svg {
+    height: 1.75em;
+  }
 }
 </style>

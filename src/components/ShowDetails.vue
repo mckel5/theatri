@@ -16,7 +16,7 @@
     <b-container class="pt-3">
       <b-row cols="1" cols-lg="2" id="details">
         <div v-for="[icon, text] of details.entries()" :key="icon">
-          <b-col>
+          <b-col class="pb-2">
             <b-row>
               <b-col cols="1">
                 <font-awesome-icon :icon="`fa-solid fa-${icon}`" />
@@ -64,6 +64,7 @@ export default {
     return {
       api_key: process.env.VUE_APP_MAPS_EMBED_KEY,
       show: Object,
+      // if the type is changed to Map instead, errors appear about calling methods on a constructor
       details: new Map(),
     };
   },
