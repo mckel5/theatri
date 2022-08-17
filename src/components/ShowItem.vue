@@ -39,10 +39,7 @@
           class="col-2 d-flex mx-auto align-items-center justify-content-center"
           id="save-button"
         >
-          <font-awesome-icon
-            :icon="`fa-${this.saved(show.id) ? 'solid' : 'regular'} fa-heart`"
-            @click.stop.prevent="toggleSavedShow(show.id)"
-          />
+          <font-awesome-icon :icon="`${fill} fa-heart`" @click.prevent="saved = !saved" />
         </b-col>
       </b-row>
     </b-container>
@@ -50,32 +47,37 @@
 </template>
 
 <script>
-// import VueLocalStorage from 'vue-localstorage';
-
 export default {
   name: 'ShowItem',
   props: {
     show: Object,
   },
-  methods: {
-    toggleSavedShow(id) {
+  data() {
+    return {
+      saved: this.$localStorage.get('savedShows').includes(this.show.id),
+    };
+  },
+  computed: {
+    /*
+    this.saved cannot be used due to the way arrow functions are bound in Vue
+
+    an arrow function must be used because defining fill() { ... } breaks all variable
+    accesses/assignments in <template>. not really sure why.
+    */
+    fill: ({ saved }) => (saved ? 'fa-solid' : 'fa-regular'),
+  },
+  watch: {
+    saved() {
       const savedShows = this.$localStorage.get('savedShows');
 
-      if (savedShows.includes(id)) {
-        const index = savedShows.indexOf(id);
-        savedShows.splice(index, 1);
+      if (this.saved) {
+        savedShows.push(this.show.id);
       } else {
-        savedShows.push(id);
+        const index = savedShows.indexOf(this.show.id);
+        savedShows.splice(index, 1);
       }
 
       this.$localStorage.set('savedShows', savedShows);
-      // This re-renders the card, thereby updating the save icon. There may be a better way to do
-      // this, though I'm not sure what it would be.
-      this.$forceUpdate();
-    },
-    saved(id) {
-      const savedShows = this.$localStorage.get('savedShows');
-      return savedShows.includes(id);
     },
   },
 };
