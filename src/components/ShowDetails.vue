@@ -13,7 +13,7 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="pt-3">
+    <b-container class="px-4 mt-4">
       <b-row cols="1" cols-lg="2" id="details">
         <div v-for="[icon, text] of details.entries()" :key="icon">
           <b-col class="pb-2">
