@@ -22,7 +22,7 @@
                 <font-awesome-icon :icon="`fa-solid fa-${icon}`" />
               </b-col>
               <b-col cols="11">
-                <p v-html="`${text}`" style="white-space: pre-line"></p>
+                <p v-html="`${text ? text : '—'}`" style="white-space: pre-line"></p>
               </b-col>
             </b-row>
           </b-col>
