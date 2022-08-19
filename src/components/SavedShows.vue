@@ -1,12 +1,14 @@
 <template>
   <div>
-    <b-row cols-lg="2">
-      <div v-for="show of shows" :key="show.id">
-        <b-col>
-          <ShowItem :show="show" />
-        </b-col>
-      </div>
-    </b-row>
+    <b-container>
+      <b-row cols-lg="2">
+        <div v-for="show of shows" :key="show.id">
+          <b-col>
+            <ShowItem :show="show" />
+          </b-col>
+        </div>
+      </b-row>
+    </b-container>
   </div>
 </template>
 

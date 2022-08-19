@@ -1,8 +1,6 @@
 <template>
   <div class="saved-shows">
-    <b-container>
-      <SavedShows />
-    </b-container>
+    <SavedShows />
     <BottomNavbar />
   </div>
 </template>
