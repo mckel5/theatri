@@ -1,9 +1,7 @@
 <template>
   <div>
+    <TitleBar class="mt-3" />
     <b-container>
-      <b-row id="logo" class="mt-3">
-        <h1>Theat<span id="accented">RI</span></h1>
-      </b-row>
       <b-row cols-lg="2">
         <div v-for="show of shows" :key="show.id">
           <b-col>
@@ -17,11 +15,13 @@
 
 <script>
 import supabase from '@/js/supabase';
+import TitleBar from '@/components/TitleBar.vue';
 import ShowItem from '@/components/ShowItem.vue';
 
 export default {
   name: 'ShowsList',
   components: {
+    TitleBar,
     ShowItem,
   },
   data() {
@@ -53,17 +53,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-@use '@/scss/colors';
-
-#logo h1 {
-  font-style: italic;
-  font-weight: bold;
-  font-size: 32pt;
-  text-align: center;
-
-  #accented {
-    color: colors.$accent-primary;
-  }
-}
-</style>
+<style scoped lang="scss"></style>
