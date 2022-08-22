@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import ShowsListView from '../views/ShowsListView.vue';
 import ShowDetailsView from '../views/ShowDetailsView.vue';
 import SavedShowsView from '../views/SavedShowsView.vue';
+import AboutView from '../views/AboutView.vue';
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/saved',
     name: 'saved-shows',
     component: SavedShowsView,
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: AboutView,
   },
 ];
 

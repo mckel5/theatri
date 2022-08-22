@@ -14,9 +14,11 @@ import {
   faTicket,
   faLocationDot,
   faArrowLeft,
+  faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
 // icon must be renamed to avoid collision with solid faHeart
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 // VueLocalStorage
@@ -45,6 +47,8 @@ library.add(
   faLocationDot,
   faArrowLeft,
   faHeartRegular,
+  faGithub,
+  faEnvelope,
 );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
