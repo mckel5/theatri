@@ -2,17 +2,24 @@
   <div>
     <b-navbar fixed="bottom" class="justify-content-center">
       <b-navbar-nav>
-        <b-nav-item class="mx-5">
+        <b-nav-item>
           <router-link to="/">
             <font-awesome-icon icon="fa-solid fa-masks-theater" />
             <span class="icon-label">All Shows</span>
           </router-link>
         </b-nav-item>
 
-        <b-nav-item class="mx-5">
+        <b-nav-item>
           <router-link to="/saved">
             <font-awesome-icon icon="fa-solid fa-heart" />
             <span class="icon-label">Saved</span>
+          </router-link>
+        </b-nav-item>
+
+        <b-nav-item>
+          <router-link to="/about">
+            <font-awesome-icon icon="fa-regular fa-circle-question" />
+            <span class="icon-label">About</span>
           </router-link>
         </b-nav-item>
       </b-navbar-nav>
@@ -38,9 +45,13 @@ nav {
     color: colors.$text-primary;
   }
 
+  li {
+    width: 6rem;
+  }
+
   .nav-link {
-    color: colors.$text-primary !important;
     font-size: 10pt;
+    text-align: center;
 
     .svg-inline--fa {
       height: 1.5rem;
@@ -48,7 +59,7 @@ nav {
       display: block;
       // center icons relative to labels
       margin: auto;
-      margin-bottom: 0.25em;
+      margin-bottom: 0.25rem;
     }
   }
 }
