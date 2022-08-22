@@ -2,26 +2,25 @@
   <div>
     <b-navbar fixed="bottom" class="justify-content-center">
       <b-navbar-nav>
-        <b-nav-item>
-          <router-link to="/">
-            <font-awesome-icon icon="fa-solid fa-masks-theater" />
-            <span class="icon-label">All Shows</span>
-          </router-link>
-        </b-nav-item>
+        <!--
+          Adding .nav-item/.nav-link directly to <router-link> instead of using
+          <b-nav-item> prevents conflicts between the <router-link> and the <a> that
+          Bootstrap Vue automatically inserts into <b-nav-item>
+         -->
+        <router-link to="/" class="nav-item nav-link">
+          <font-awesome-icon icon="fa-solid fa-masks-theater" />
+          <span class="icon-label">All Shows</span>
+        </router-link>
 
-        <b-nav-item>
-          <router-link to="/saved">
-            <font-awesome-icon icon="fa-solid fa-heart" />
-            <span class="icon-label">Saved</span>
-          </router-link>
-        </b-nav-item>
+        <router-link to="/saved" class="nav-item nav-link">
+          <font-awesome-icon icon="fa-solid fa-heart" />
+          <span class="icon-label">Saved</span>
+        </router-link>
 
-        <b-nav-item>
-          <router-link to="/about">
-            <font-awesome-icon icon="fa-regular fa-circle-question" />
-            <span class="icon-label">About</span>
-          </router-link>
-        </b-nav-item>
+        <router-link to="/about" class="nav-item nav-link">
+          <font-awesome-icon icon="fa-regular fa-circle-question" />
+          <span class="icon-label">About</span>
+        </router-link>
       </b-navbar-nav>
     </b-navbar>
   </div>
@@ -42,14 +41,23 @@ nav {
 
   a {
     text-decoration: none;
-    color: colors.$text-primary;
+    color: colors.$text-secondary;
+
+    &:hover,
+    &:focus {
+      color: colors.$text-primary;
+    }
+
+    // The '.nav-item' is required for specificity, otherwise the style won't apply
+    // https://stackoverflow.com/a/55134066
+    &.router-link-exact-active.nav-item {
+      // color: colors.$text-secondary;
+      color: colors.$text-primary;
+    }
   }
 
-  li {
+  .nav-item {
     width: 6rem;
-  }
-
-  .nav-link {
     font-size: 10pt;
     text-align: center;
 
