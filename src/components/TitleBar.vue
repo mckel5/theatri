@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <b-container fluid class="py-2">
       <h1>Theat<span id="accented">RI</span></h1>
   </b-container>
 </template>
@@ -14,6 +14,10 @@ export default {
 @use '@/scss/colors';
 
 * {
+  margin: 0;
+}
+
+h1 {
   font-style: italic;
   font-weight: bold;
   font-size: 32pt;

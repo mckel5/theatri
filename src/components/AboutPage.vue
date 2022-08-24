@@ -37,6 +37,10 @@ export default {};
 </script>
 
 <style scoped lang="scss">
+h1 {
+  font-weight: bold;
+}
+
 svg {
   height: 2rem;
   margin: 0.5rem 1.5rem;

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <TitleBar class="mt-3" />
+    <!-- TODO: Honestly let's consider removing the title or putting it on the about page -->
+    <TitleBar />
     <b-container>
       <b-row cols-lg="2">
         <div v-for="show of shows" :key="show.id">
