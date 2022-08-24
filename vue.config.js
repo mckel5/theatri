@@ -11,4 +11,8 @@ module.exports = defineConfig({
   // aidankay1.github.io/<repo name>) HOWEVER, since I am using a custom domain,
   // I do indeed want everything to start at the root
   publicPath: '/',
+  pwa: {
+    // `name` property is sourced from package.json by default
+    themeColor: '#000000',
+  },
 });
