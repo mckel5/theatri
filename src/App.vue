@@ -16,5 +16,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
   color: colors.$text-primary;
   background: colors.$bg-primary;
+
+  body {
+    margin-bottom: 4.5rem;
+  }
 }
 </style>
