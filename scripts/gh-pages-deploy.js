@@ -14,6 +14,9 @@ const domainName = 'theatri.xyz';
     const folderName = fs.existsSync('dist') ? 'dist' : 'build';
     // Specify custom domain name
     fs.writeFileSync(`${folderName}/CNAME`, domainName);
+    // Copy index.html to 404.html
+    // https://stackoverflow.com/a/59677657
+    await execa('cp', [`${folderName}/index.html`, `${folderName}/404.html`]);
     await execa('git', ['--work-tree', folderName, 'add', '--all']);
     await execa('git', ['--work-tree', folderName, 'commit', '-m', 'gh-pages']);
     console.log('Pushing to gh-pages...');
