@@ -3,7 +3,7 @@
     <b-container fluid>
       <b-row class="p-2" id="title">
         <b-col cols="1" class="align-self-center">
-          <a @click="$router.back()" @keydown.enter="$router.back()" href="#">
+          <a @click="$router.back()" @keydown.enter="$router.back()">
             <font-awesome-icon icon="fa-solid fa-arrow-left" style="height: 2rem" />
             <span class="visually-hidden">Back</span>
           </a>
@@ -106,13 +106,14 @@ h1 {
 
 // FontAwesome icons
 svg {
-  font-size: 16pt;
+  height: 1.5rem;
 }
 
 #title {
   background-color: black;
   a {
     color: colors.$text-primary;
+    cursor: pointer;
   }
 }
 </style>
