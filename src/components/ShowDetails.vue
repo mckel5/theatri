@@ -3,7 +3,7 @@
     <b-container fluid>
       <b-row class="p-2" id="title">
         <b-col cols="1" class="align-self-center">
-          <a @click="$router.back()" @keydown.enter="$router.back()">
+          <a @click="$router.back()" @keydown.enter="$router.back()" title="Back">
             <font-awesome-icon icon="fa-solid fa-arrow-left" style="height: 2rem" />
             <span class="visually-hidden">Back</span>
           </a>

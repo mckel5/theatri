@@ -19,11 +19,11 @@
     </b-row>
     <b-row>
       <b-col>
-        <a href="mailto:aidan_kelly@uri.edu">
+        <a href="mailto:aidan_kelly@uri.edu" title="Email">
           <font-awesome-icon icon="fa-solid fa-envelope" />
           <span class="visually-hidden">Email</span>
         </a>
-        <a href="https://github.com/aidankay1/theatri" target="_blank">
+        <a href="https://github.com/aidankay1/theatri" target="_blank" title="Source code">
           <font-awesome-icon icon="fa-brands fa-github" />
           <span class="visually-hidden">Source code</span>
         </a>

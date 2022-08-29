@@ -39,7 +39,11 @@
           class="col-2 d-flex mx-auto align-items-center justify-content-center"
           id="save-button"
         >
-          <font-awesome-icon :icon="`${fill} fa-heart`" @click.prevent="saved = !saved" />
+          <font-awesome-icon
+            :icon="`${fill} fa-heart`"
+            @click.prevent="saved = !saved"
+            :title="saved ? 'Unsave' : 'Save'"
+          />
         </b-col>
       </b-row>
     </b-container>
