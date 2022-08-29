@@ -14,8 +14,11 @@ export default {
     };
   },
   async created() {
-    this.shows = await this.fetchDatabaseData();
-    this.writeDataToCache();
+    // only refresh cache if device is connected to internet
+    if (navigator.onLine) {
+      this.shows = await this.fetchDatabaseData();
+      this.writeDataToCache();
+    }
   },
   methods: {
     async fetchDatabaseData() {
