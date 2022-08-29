@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import supabase from '@/js/supabase';
 import TitleBar from '@/components/TitleBar.vue';
 import ShowItem from '@/components/ShowItem.vue';
 
@@ -31,25 +30,8 @@ export default {
     };
   },
   async created() {
-    const data = await this.getShowsFromSupabase();
+    const data = this.$localStorage.get('allShows');
     if (data) this.shows = data;
-  },
-  methods: {
-    async getShowsFromSupabase() {
-      const currentDate = new Date().toISOString();
-      const { data, error } = await supabase
-        .from('shows')
-        .select('*')
-        .gte('date', currentDate)
-        .order('date');
-
-      if (error) {
-        // TODO: spawn toast notification or something
-        console.log(error);
-      }
-
-      return data;
-    },
   },
 };
 </script>
