@@ -60,6 +60,10 @@ new Vue({
   router,
   render: (h) => h(App),
   localStorage: {
+    allShows: {
+      type: Array,
+      default: [],
+    },
     savedShows: {
       type: Array,
       default: [],

@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import supabase from '@/js/supabase';
 import ShowItem from '@/components/ShowItem.vue';
 
 export default {
@@ -36,26 +35,8 @@ export default {
   },
   async created() {
     const savedShows = this.$localStorage.get('savedShows');
-    const data = await this.getSpecifiedShowsFromSupabase(savedShows);
+    const data = this.$localStorage.get('allShows').filter((show) => savedShows.includes(show.id));
     if (data) this.shows = data;
-  },
-  methods: {
-    async getSpecifiedShowsFromSupabase(ids) {
-      const currentDate = new Date().toISOString();
-      const { data, error } = await supabase
-        .from('shows')
-        .select('*')
-        .in('id', ids)
-        // prevents loading past shows
-        .gte('date', currentDate);
-
-      if (error) {
-        // TODO: spawn toast notification or something
-        console.log(error);
-      }
-
-      return data;
-    },
   },
 };
 </script>

@@ -53,8 +53,6 @@
 </template>
 
 <script>
-import supabase from '@/js/supabase';
-
 export default {
   name: 'ShowDetails',
   props: {
@@ -69,7 +67,7 @@ export default {
     };
   },
   async created() {
-    const data = await this.getShowFromSupabaseById(this.id);
+    const data = this.$localStorage.get('allShows').filter((show) => show.id === this.id);
     if (data) {
       [this.show] = data;
       this.details = new Map([
@@ -80,18 +78,6 @@ export default {
         ['location-dot', this.show.address],
       ]);
     }
-  },
-  methods: {
-    async getShowFromSupabaseById(id) {
-      const { data, error } = await supabase.from('shows').select('*').eq('id', id);
-
-      if (error) {
-        // TODO: spawn toast notification or something
-        console.log(error);
-      }
-
-      return data;
-    },
   },
 };
 </script>
