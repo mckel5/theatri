@@ -12,28 +12,26 @@
                 new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(show.date))
               }}</b-col>
             </b-row>
-            <b-row id="day-of-month">
-              <b-col>{{ new Date(show.date).getDate() }}</b-col>
+            <b-row>
+              <b-col id="day-of-month">{{ new Date(show.date).getDate() }}</b-col>
             </b-row>
           </b-container>
         </b-col>
-        <b-col>
-          <b-container id="info-text" style="border-left: 2px solid white">
-            <b-row>
-              <b-col style="font-weight: bold">{{ show.title }}</b-col>
-            </b-row>
-            <b-row>
-              <b-col>{{ show.performed_by }}</b-col>
-            </b-row>
-            <b-row>
-              <b-col>{{
-                new Date(show.date).toLocaleTimeString('en-US', {
-                  hour: 'numeric',
-                  minute: '2-digit',
-                })
-              }}</b-col>
-            </b-row>
-          </b-container>
+        <b-col class="col-7" id="info-text" style="border-left: 2px solid white">
+          <p class="text-truncate" style="font-weight: bold">
+            {{ show.title }}
+          </p>
+          <p class="text-truncate">
+            {{ show.performed_by }}
+          </p>
+          <p class="text-truncate">
+            {{
+              new Date(show.date).toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+              })
+            }}
+          </p>
         </b-col>
         <b-col
           class="col-2 d-flex mx-auto align-items-center justify-content-center"
@@ -115,12 +113,17 @@ export default {
   #day-of-month {
     color: colors.$accent-primary;
     font-size: 30pt;
-    margin: -0.25em;
+    margin-top: -0.5rem;
+    margin-bottom: -0.5rem;
   }
 }
 
 #info-text {
   padding-left: 2em;
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 #save-button {
