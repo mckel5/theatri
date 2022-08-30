@@ -9,6 +9,12 @@
             <ShowItem :show="show" />
           </b-col>
         </div>
+        <b-col>
+          <b-alert :show="showError" variant="danger" fade>
+            <h4 class="alert-heading">Error while fetching data</h4>
+            <p>{{ errorMsg }}</p>
+          </b-alert>
+        </b-col>
       </b-row>
     </b-container>
   </div>
@@ -27,11 +33,18 @@ export default {
   data() {
     return {
       shows: [],
+      showError: false,
+      errorMsg: '',
     };
   },
   async created() {
     const data = this.$localStorage.get('allShows');
     if (data) this.shows = data;
+
+    this.$root.$on('dbFetchError', (error) => {
+      this.showError = true;
+      this.errorMsg = error.message;
+    });
   },
 };
 </script>

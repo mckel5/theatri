@@ -13,7 +13,7 @@ export default {
       shows: [],
     };
   },
-  async created() {
+  async mounted() {
     // only refresh cache if device is connected to internet
     if (navigator.onLine) {
       this.shows = await this.fetchDatabaseData();
@@ -32,6 +32,7 @@ export default {
       if (error) {
         // TODO: spawn toast notification or something
         console.log(error);
+        this.$root.$emit('dbFetchError', error);
       }
 
       return data;
