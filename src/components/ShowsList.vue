@@ -10,9 +10,10 @@
           </b-col>
         </div>
         <b-col>
-          <b-alert :show="showError" variant="danger" fade>
-            <h4 class="alert-heading">Error while fetching data</h4>
-            <p>{{ errorMsg }}</p>
+          <b-alert id="error-alert" :show="showError" variant="secondary">
+            <h6 class="alert-heading fw-bold">Error while refreshing data</h6>
+            <p>If you have cached data on your device, it will be used instead.</p>
+            <p class="text-muted">{{ errorMsg }}</p>
           </b-alert>
         </b-col>
       </b-row>
@@ -41,7 +42,7 @@ export default {
     const data = this.$localStorage.get('allShows');
     if (data) this.shows = data;
 
-    this.$root.$on('dbFetchError', (error) => {
+    this.$root.$on('dbFetchError', (error = { message: 'No error provided.' }) => {
       this.showError = true;
       this.errorMsg = error.message;
     });
@@ -49,4 +50,15 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+#error-alert {
+  background-color: #222;
+  border-color: darkred;
+  color: white;
+
+  p {
+    margin-bottom: 0;
+    font-size: 11pt;
+  }
+}
+</style>

@@ -13,10 +13,10 @@ export default {
       shows: [],
     };
   },
-  async mounted() {
-    // only refresh cache if device is connected to internet
-    if (navigator.onLine) {
-      this.shows = await this.fetchDatabaseData();
+  async created() {
+    const newData = await this.fetchDatabaseData();
+    if (newData) {
+      this.shows = newData;
       this.writeDataToCache();
     }
   },
@@ -29,11 +29,7 @@ export default {
         .gte('date', currentDate)
         .order('date');
 
-      if (error) {
-        // TODO: spawn toast notification or something
-        console.log(error);
-        this.$root.$emit('dbFetchError', error);
-      }
+      if (error && navigator.onLine) this.$root.$emit('dbFetchError', error);
 
       return data;
     },
