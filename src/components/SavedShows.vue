@@ -2,14 +2,16 @@
   <div>
     <b-container>
       <b-row cols-lg="2">
-        <div v-if="shows.length > 0">
+        <div>
           <div v-for="show of shows" :key="show.id">
             <b-col>
               <ShowItem :show="show" />
             </b-col>
           </div>
         </div>
-        <div v-else>
+      </b-row>
+      <b-row>
+        <div v-if="shows.length === 0">
           <p class="mt-3 text-center">
             You haven't saved any shows yet. Go to All Shows and tap the heart icon on any show you
             want to save.
