@@ -97,9 +97,14 @@ svg {
 
 #title {
   background-color: black;
+
   a {
     color: colors.$text-primary;
     cursor: pointer;
+  }
+
+  h1 {
+    margin-bottom: 0;
   }
 }
 </style>
