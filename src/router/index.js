@@ -52,7 +52,10 @@ const router = new VueRouter({
     // behavior: 'auto' does not prevent smooth scrolling
     // https://kilianvalkhof.com/2022/css-html/preventing-smooth-scrolling-with-javascript/
     if (savedPosition) return { savedPosition, behavior: 'instant' };
+    // fixes issue on Firefox
     document.getElementById('app').scrollIntoView({ behavior: 'instant' });
+    // fixes issue on Chrome
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     return {};
   },
 });
