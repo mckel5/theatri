@@ -3,12 +3,61 @@
     <!-- TODO: Honestly let's consider removing the title or putting it on the about page -->
     <TitleBar />
     <b-container>
+      <!-- Shows within 24 hours -->
+      <b-row class="date-separator">
+        <h3>Today</h3>
+      </b-row>
       <b-row cols-lg="2">
-        <div v-for="show of shows" :key="show.id">
+        <div
+          v-for="show of shows.filter(
+            (s) => new Date(s.date).getTime() <= new Date().getTime() + 1000 * 60 * 60 * 24,
+          )"
+          :key="show.id"
+        >
           <b-col>
             <ShowItem :show="show" />
           </b-col>
         </div>
+      </b-row>
+      <!-- Shows within 1-7 days -->
+      <b-row class="date-separator">
+        <b-col>
+          <h3>This week</h3>
+        </b-col>
+      </b-row>
+      <b-row cols-lg="2">
+        <div
+          v-for="show of shows.filter(
+            (s) =>
+              new Date(s.date).getTime() > new Date().getTime() + 1000 * 60 * 60 * 24 * 1 &&
+              new Date(s.date).getTime() <= new Date().getTime() + 1000 * 60 * 60 * 24 * 7,
+          )"
+          :key="show.id"
+        >
+          <b-col>
+            <ShowItem :show="show" />
+          </b-col>
+        </div>
+      </b-row>
+      <!-- Shows later than 7 days -->
+      <b-row class="date-separator">
+        <b-col>
+          <h3>Upcoming</h3>
+        </b-col>
+      </b-row>
+      <b-row cols-lg="2">
+        <div
+          v-for="show of shows.filter(
+            (s) => new Date(s.date).getTime() > new Date().getTime() + 1000 * 60 * 60 * 24 * 7,
+          )"
+          :key="show.id"
+        >
+          <b-col>
+            <ShowItem :show="show" />
+          </b-col>
+        </div>
+      </b-row>
+      <b-row>
         <b-col>
           <b-alert id="error-alert" :show="showError" variant="secondary">
             <h6 class="alert-heading fw-bold">Error while refreshing data</h6>
@@ -51,6 +100,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.date-separator {
+  &:not(:first-of-type) {
+    margin-top: 1rem;
+  }
+
+  h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
 #error-alert {
   background-color: #222;
   border-color: darkred;
