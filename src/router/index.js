@@ -46,6 +46,15 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+  // Return to last position when returning to All Shows
+  // AND prevent inexplicable scrolling to bottom whenever a ShowDetails is loaded
+  scrollBehavior(to, from, savedPosition) {
+    // behavior: 'auto' does not prevent smooth scrolling
+    // https://kilianvalkhof.com/2022/css-html/preventing-smooth-scrolling-with-javascript/
+    if (savedPosition) return { savedPosition, behavior: 'instant' };
+    document.getElementById('app').scrollIntoView({ behavior: 'instant' });
+    return {};
+  },
 });
 
 const DEFAULT_TITLE = 'TheatRI';
