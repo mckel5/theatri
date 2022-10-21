@@ -23,7 +23,10 @@ export default {
   },
   methods: {
     async fetchDatabaseData() {
-      const currentDate = new Date().toISOString();
+      let currentDate = new Date();
+      // Include shows from the current day even if they are in the past
+      currentDate.setHours(0, 0, 0, 0);
+      currentDate = currentDate.toISOString();
       const { data, error } = await supabase
         .from('shows')
         .select('*')
