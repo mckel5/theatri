@@ -19,6 +19,7 @@ export default {
       this.shows = newData;
       this.writeDataToCache();
     }
+    this.$root.$data.loadingComplete = true;
   },
   methods: {
     async fetchDatabaseData() {

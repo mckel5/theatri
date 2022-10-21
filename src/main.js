@@ -69,4 +69,7 @@ new Vue({
       default: [],
     },
   },
+  data: {
+    loadingComplete: false,
+  },
 }).$mount('#app');
