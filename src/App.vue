@@ -19,7 +19,7 @@ export default {
       this.shows = newData;
       this.writeDataToCache();
     }
-    this.$root.$data.loadingComplete = true;
+    this.$root.$emit('loadComplete', newData);
   },
   methods: {
     async fetchDatabaseData() {

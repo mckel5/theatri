@@ -4,7 +4,7 @@
     <TitleBar />
     <b-container>
       <!-- Prevents a blank screen if ShowsList is rendered before data is fetched -->
-      <div v-if="this.$root.$data.loadingComplete || shows.length > 0">
+      <div v-if="loaded">
         <!-- Shows within 24 hours -->
         <b-row class="date-separator">
           <h3>Today</h3>
@@ -89,13 +89,25 @@ export default {
   data() {
     return {
       shows: [],
+      loaded: false,
       showError: false,
       errorMsg: '',
     };
   },
-  async created() {
+  mounted() {
     const data = this.$localStorage.get('allShows');
-    if (data) this.shows = data;
+
+    if (data) {
+      this.shows = data;
+      this.loaded = true;
+    }
+
+    // On initial load, localStorage will be empty, so this will update the ShowsList when the
+    // database fetch returns
+    this.$root.$on('loadComplete', (newData) => {
+      this.shows = newData;
+      this.loaded = true;
+    });
 
     this.$root.$on('dbFetchError', (error = { message: 'No error provided.' }) => {
       this.showError = true;
