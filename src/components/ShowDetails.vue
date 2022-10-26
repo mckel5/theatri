@@ -74,10 +74,23 @@ export default {
         ['school-flag', this.show.performed_by],
         ['calendar', new Date(this.show.date).toLocaleDateString('en-US', { dateStyle: 'full' })],
         ['clock', new Date(this.show.date).toLocaleTimeString('en-US', { timeStyle: 'short' })],
-        ['ticket', this.show.ticket_price],
+        ['ticket', this.linkify(this.show.ticket_price)],
         ['location-dot', this.show.address],
       ]);
     }
+  },
+  methods: {
+    // Adds <a> tags to URLs wrapped in `backticks`
+    linkify(str) {
+      // Prevent empty strings or strings without URLs from crashing the app
+      if (!str || !str.includes('`')) return '';
+
+      const split = str.split('`');
+      const url = split[1];
+      let newUrl = url;
+      if (!url.includes('http')) newUrl = `https://${url}`;
+      return str.replaceAll(`\`${url}\``, `<a href=${newUrl}>${url}</a>`);
+    },
   },
 };
 </script>
