@@ -3,75 +3,69 @@
     <!-- TODO: Honestly let's consider removing the title or putting it on the about page -->
     <TitleBar />
     <b-container>
-      <!-- Prevents a blank screen if ShowsList is rendered before data is fetched -->
-      <div v-if="loaded">
-        <!-- Shows within 24 hours -->
-        <b-row class="date-separator">
-          <h3>Today</h3>
-        </b-row>
-        <b-row cols-lg="2">
-          <div
-            v-for="show of shows.filter(
-              (s) => new Date(s.date).getTime() <= new Date().getTime() + 1000 * 60 * 60 * 24,
-            )"
-            :key="show.id"
-          >
-            <b-col>
-              <ShowItem :show="show" />
-            </b-col>
-          </div>
-        </b-row>
-        <!-- Shows in 1-7 days -->
-        <b-row class="date-separator">
+      <!-- Shows within 24 hours -->
+      <b-row class="date-separator">
+        <h3>Today</h3>
+      </b-row>
+      <b-row cols-lg="2">
+        <div
+          v-for="show of shows.filter(
+            (s) => new Date(s.date).getTime() <= new Date().getTime() + 1000 * 60 * 60 * 24,
+          )"
+          :key="show.id"
+        >
           <b-col>
-            <h3>This week</h3>
+            <ShowItem :show="show" />
           </b-col>
-        </b-row>
-        <b-row cols-lg="2">
-          <div
-            v-for="show of shows.filter(
-              (s) =>
-                new Date(s.date).getTime() > new Date().getTime() + 1000 * 60 * 60 * 24 * 1 &&
-                new Date(s.date).getTime() <= new Date().getTime() + 1000 * 60 * 60 * 24 * 7,
-            )"
-            :key="show.id"
-          >
-            <b-col>
-              <ShowItem :show="show" />
-            </b-col>
-          </div>
-        </b-row>
-        <!-- Shows later than 7 days -->
-        <b-row class="date-separator">
+        </div>
+      </b-row>
+      <!-- Shows in 1-7 days -->
+      <b-row class="date-separator">
+        <b-col>
+          <h3>This week</h3>
+        </b-col>
+      </b-row>
+      <b-row cols-lg="2">
+        <div
+          v-for="show of shows.filter(
+            (s) =>
+              new Date(s.date).getTime() > new Date().getTime() + 1000 * 60 * 60 * 24 * 1 &&
+              new Date(s.date).getTime() <= new Date().getTime() + 1000 * 60 * 60 * 24 * 7,
+          )"
+          :key="show.id"
+        >
           <b-col>
-            <h3>Upcoming</h3>
+            <ShowItem :show="show" />
           </b-col>
-        </b-row>
-        <b-row cols-lg="2">
-          <div
-            v-for="show of shows.filter(
-              (s) => new Date(s.date).getTime() > new Date().getTime() + 1000 * 60 * 60 * 24 * 7,
-            )"
-            :key="show.id"
-          >
-            <b-col>
-              <ShowItem :show="show" />
-            </b-col>
-          </div>
-        </b-row>
-        <b-row>
+        </div>
+      </b-row>
+      <!-- Shows later than 7 days -->
+      <b-row class="date-separator">
+        <b-col>
+          <h3>Upcoming</h3>
+        </b-col>
+      </b-row>
+      <b-row cols-lg="2">
+        <div
+          v-for="show of shows.filter(
+            (s) => new Date(s.date).getTime() > new Date().getTime() + 1000 * 60 * 60 * 24 * 7,
+          )"
+          :key="show.id"
+        >
           <b-col>
-            <b-alert id="error-alert" :show="showError" variant="secondary">
-              <h6 class="alert-heading fw-bold">Error while refreshing data</h6>
-              <p>If you have cached data on your device, it will be used instead.</p>
-              <p class="text-muted">{{ errorMsg }}</p>
-            </b-alert>
+            <ShowItem :show="show" />
           </b-col>
-        </b-row>
-      </div>
-      <div v-else>
-        <p>Loading...</p>
-      </div>
+        </div>
+      </b-row>
+      <b-row>
+        <b-col>
+          <b-alert id="error-alert" :show="showError" variant="secondary">
+            <h6 class="alert-heading fw-bold">Error while refreshing data</h6>
+            <p>If you have cached data on your device, it will be used instead.</p>
+            <p class="text-muted">{{ errorMsg }}</p>
+          </b-alert>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -89,24 +83,17 @@ export default {
   data() {
     return {
       shows: [],
-      loaded: false,
       showError: false,
       errorMsg: '',
     };
   },
   mounted() {
-    const data = this.$localStorage.get('allShows');
-
-    if (data) {
-      this.shows = data;
-      this.loaded = true;
-    }
+    this.shows = this.$localStorage.get('allShows');
 
     // On initial load, localStorage will be empty, so this will update the ShowsList when the
     // database fetch returns
     this.$root.$on('loadComplete', (newData) => {
       this.shows = newData;
-      this.loaded = true;
     });
 
     this.$root.$on('dbFetchError', (error = { message: 'No error provided.' }) => {
