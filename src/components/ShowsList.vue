@@ -10,7 +10,8 @@
       <b-row cols-lg="2">
         <div
           v-for="show of shows.filter(
-            (s) => new Date(s.date).getTime() <= new Date().getTime() + 1000 * 60 * 60 * 24,
+            // (s) => new Date(s.date).getTime() <= new Date().getTime() + 1000 * 60 * 60 * 24,
+            (s) => happensToday(new Date(s.date)),
           )"
           :key="show.id"
         >
@@ -29,7 +30,7 @@
         <div
           v-for="show of shows.filter(
             (s) =>
-              new Date(s.date).getTime() > new Date().getTime() + 1000 * 60 * 60 * 24 * 1 &&
+              !happensToday(new Date(s.date)) &&
               new Date(s.date).getTime() <= new Date().getTime() + 1000 * 60 * 60 * 24 * 7,
           )"
           :key="show.id"
@@ -100,6 +101,18 @@ export default {
       this.showError = true;
       this.errorMsg = error.message;
     });
+  },
+  methods: {
+    happensToday(date) {
+      const today = new Date();
+      // prevents conflict with eslint operator-linebreak rule
+      // prettier-ignore
+      return (
+        today.getFullYear() === date.getFullYear()
+        && today.getMonth() === date.getMonth()
+        && today.getDate() === date.getDate()
+      );
+    },
   },
 };
 </script>
