@@ -83,7 +83,8 @@ export default {
     // Adds <a> tags to URLs wrapped in `backticks`
     linkify(str) {
       // Prevent empty strings or strings without URLs from crashing the app
-      if (!str || !str.includes('`')) return '';
+      if (!str) return '';
+      if (!str.includes('`')) return str;
 
       const split = str.split('`');
       const url = split[1];
