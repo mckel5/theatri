@@ -4,7 +4,7 @@
       <b-col>
         <h1 class="my-3 display-4">About</h1>
         <p>
-          This app is a passion project created by Aidan Kelly, a Computer Science student at the
+          This app is a passion project created by Marceline Kelly, a Computer Science student at the
           University of Rhode Island.
         </p>
         <p>
@@ -19,11 +19,11 @@
     </b-row>
     <b-row>
       <b-col>
-        <a href="mailto:aidan_kelly@uri.edu" title="Email">
+        <a href="mailto:m.kelly@uri.edu" title="Email">
           <font-awesome-icon icon="fa-solid fa-envelope" />
           <span class="visually-hidden">Email</span>
         </a>
-        <a href="https://github.com/aidankay1/theatri" target="_blank" title="Source code">
+        <a href="https://github.com/mckel5/theatri" target="_blank" title="Source code">
           <font-awesome-icon icon="fa-brands fa-github" />
           <span class="visually-hidden">Source code</span>
         </a>
